@@ -1,5 +1,7 @@
 from Player import Player
+from Match import Match
 import HelpFunctions as hp
+
 
 def main():
     '''Fifa Tournament Creator'''
@@ -30,21 +32,21 @@ def main():
             ExitProgram=True
 
         elif(Options==1):
-            name=input("Wprowadź imie: \n")
-            team=input("Wprowadź zespół: \n")
-            Players.append(Player(name,team))
+            hp.AddPlayerToList(Players)
 
         elif(Options==2):
             hp.PlayerList(Players)
 
         elif(Options==3):
-            hp.PlayerIDList(Players)
-            try:
-                index=eval(input("Podaj ID "))
-                confirm=input("Jesteś pewien T/N?")
-                if confirm=="T":
-                    del Players[index]
-                else: break
-            except (IndexError,NameError):
-                pass
+            hp.DeletePlayerFromList(Players)
+
+        elif(Options==4):
+            hp.ShowTable(Players)
+
+        elif(Options==5):
+            matchs=Match(Players)
+            print("Liczba meczy: ",matchs.GetMatchQty())
+            print(hp.MatchLottery(Players))
+
+
 main()

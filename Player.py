@@ -25,7 +25,7 @@ class Player(object):
         return self.team
 
     def getID(self):
-        return self.id
+        return int(self.id)
 
     def setName(self,name):
         self.name=name.upper()
