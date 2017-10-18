@@ -9,15 +9,12 @@ def PlayerList(list):
         table.append_row([user.getName(),user.getTeam()])
     print(table)
 
-
-
 def PlayerIDList(list):
     table=BeautifulTable()
     table.column_headers=["ID","Name","Team"]
     for user in list:
         table.append_row([user.getID(),user.getName(),user.getTeam()])
     print(table)
-
 
 def AddPlayerToList(list):
     name = input("Wprowadź imie: \n")
@@ -45,21 +42,16 @@ def ShowTable(list):
     print(table)
 
 def MatchQtyFunction(list):
-    results=1
+    results=0
     for i in range(1,len(list)):
-        results=results*i
+        results=results+i
     return results
 
 def MatchLottery(list):
-    meczID=0
     matchTable=[]
     for i in range(len(list)):
         for j in range(i+1,len(list)):
-            matchTable.append((list[i].getID(),list[j].getID()))
-            meczID += 1
-
-    for i in range(len(matchTable)*3):
+            matchTable.append((list[i],list[j]))
+    for i in range(len(matchTable)*18):
         matchTable=random.sample(matchTable,len(matchTable))
-
     return matchTable
-

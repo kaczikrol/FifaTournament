@@ -2,7 +2,6 @@ from Player import Player
 from Match import Match
 import HelpFunctions as hp
 
-
 def main():
     '''Fifa Tournament Creator'''
     print("Witaj w kreatorze turniejów w FIFA. Obsłuż program za pomocą klawiatury")
@@ -26,7 +25,6 @@ def main():
             except (NameError,SyntaxError):
                 pass
 
-
         if (Options==0):
             print("Dziękujemy za skorzystanie z programu!")
             ExitProgram=True
@@ -46,7 +44,8 @@ def main():
         elif(Options==5):
             matchs=Match(Players)
             print("Liczba meczy: ",matchs.GetMatchQty())
-            print(hp.MatchLottery(Players))
-
+            matchs.GetMatchPairs()
+            matchs.GetMatchPairsByName()
+            matchs.SetMatchResults()
 
 main()
