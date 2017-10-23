@@ -35,10 +35,25 @@ def DeletePlayerFromList(list):
     except(NameError, SyntaxError, IndexError):
         pass
 
+def AreYouSure():
+    choice=input("Jesteś pewien Y/N? ")
+    if (choice.upper()=="Y"):
+        return True
+    else:
+        return False
+
+
 def ShowTable(list):
     table=BeautifulTable()
-    table.column_headers=['Name','Team','Match','Wins','Draw','Losses','Goals +','Goals *','Goals +/-','Points']
-    table.append_row([0,0,0,0,0,0,0,0,0,0])
+    table._max_table_width=500
+    table.column_headers=['Name','Team','Match','Wins','Draw','Losses','Goals +','Goals -','Goals +/-','Points']
+    for player in list:
+        table.append_row([player.getName(),player.getTeam(),player.getMatchNumbers(),player.getMatchNumbersWin(),
+                          player.getMatchNumbersDraw(),player.getMatchNumberLoss(),player.getMatchGoalsPlus(),
+                          player.getMatchGoalsMinus(),player.getMatchGoalsDiff(),player.getPlayerPoints()])
+    table.sort('Goals +/-')
+    table.sort('Points')
+    table.reverse()
     print(table)
 
 def MatchQtyFunction(list):
@@ -55,3 +70,5 @@ def MatchLottery(list):
     for i in range(len(matchTable)*18):
         matchTable=random.sample(matchTable,len(matchTable))
     return matchTable
+
+

@@ -20,7 +20,7 @@ class Player(object):
         Player.PlayersID()
 
     def getName(self):
-        return self.name
+        return str(self.name)
 
     def getTeam(self):
         return self.team
@@ -32,10 +32,28 @@ class Player(object):
         return self.matchstatus
 
     def getMatchGoalsPlus(self):
-        return self.matchgoalsplus
+        return sum(self.matchgoalsplus)
 
     def getMatchGoalsMinus(self):
-        return self.matchgoalsminus
+        return sum(self.matchgoalsminus)
+
+    def getMatchGoalsDiff(self):
+        return (self.getMatchGoalsPlus()-self.getMatchGoalsMinus())
+
+    def getMatchNumbers(self):
+        return len(self.matchstatus)
+
+    def getMatchNumbersWin(self):
+        return self.matchstatus.count("W")
+
+    def getMatchNumbersDraw(self):
+        return self.matchstatus.count("D")
+
+    def getMatchNumberLoss(self):
+        return self.matchstatus.count("L")
+
+    def getPlayerPoints(self):
+        return self.getMatchNumbersWin()*3+self.getMatchNumbersDraw()
 
     def setName(self,name):
         self.name=name.upper()
